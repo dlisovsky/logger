@@ -1,0 +1,11 @@
+.DS_Store
+.sfdx
+.project
+.salesforce
+.settings
+node_modules
+.idea
+.vscode
+temp
+certificates
+assets/server.key

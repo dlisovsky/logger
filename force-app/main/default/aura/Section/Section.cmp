@@ -1,0 +1,47 @@
+<aura:component description="Section">
+	<aura:attribute name="title" type="String" access="public" default=""/>
+	<aura:attribute name="customTitle" type="Aura.Component[]" access="public" default=""></aura:attribute>
+	<aura:attribute name="isOpen" type="Boolean" access="public" default=""/>
+
+	<aura:attribute name="isViewed" type="Boolean" access="public" default="{!false}"/>
+	<aura:attribute name="indicateIsViewed" type="Boolean" access="public" default="{!true}"/>
+
+	<aura:handler name="init" value="{!this}" action="{!c.handleInit}" />
+
+	<div class="{! 'slds-section' + if(v.isOpen, ' slds-is-open', '') }">
+		<h3 class="slds-section__title">
+			<button aria-controls="expando-unique-id"
+					aria-expanded="true"
+					onclick="{! c.handleSectionTitle }"
+					class="slds-button slds-section__title-action">
+
+				<aura:if isTrue="{! and(v.indicateIsViewed, not(v.isViewed)) }">
+					*
+				</aura:if>
+
+				<aura:if isTrue="{!v.isOpen}">
+					<lightning:icon iconName="utility:chevrondown" size="xx-small" class="slds-m-right_x-small"/>
+					<aura:set attribute="else">
+						<lightning:icon iconName="utility:chevronright" size="xx-small" class="slds-m-right_x-small"/>
+					</aura:set>
+				</aura:if>
+
+				<div class="slds-truncate" style="width: 100%" title="{! v.title }">
+					<!--<aura:if isTrue="{! and(v.indicateIsViewed, not(v.isViewed)) }">-->
+						<!--*-->
+					<!--</aura:if>-->
+					<aura:if isTrue="{! not(empty(v.customTitle)) }">
+						{!v.customTitle}
+						<aura:set attribute="else">
+							{! v.title }
+						</aura:set>
+					</aura:if>
+				</div>
+			</button>
+		</h3>
+		<div aria-hidden="false" class="slds-section__content">
+			{! v.body }
+		</div>
+	</div>
+
+</aura:component>

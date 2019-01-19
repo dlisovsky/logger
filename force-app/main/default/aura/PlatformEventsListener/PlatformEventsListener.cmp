@@ -1,0 +1,6 @@
+<aura:component access="global" description="PlatformEventsListener" controller="PlatformEventsListenerCtrl">
+	<aura:attribute name="channel" type="String" required="true"/>
+	<aura:registerEvent name="onMessage" type="c:CommonEvent"/>
+	<aura:registerEvent name="onError" type="c:CommonEvent"/>
+	<ltng:require scripts="{!$Resource.cometd + '/cometd.js'}" afterScriptsLoaded="{!c.handleInit}" />
+</aura:component>

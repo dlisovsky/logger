@@ -1,0 +1,18 @@
+{
+    "packageDirectories": [
+        {
+            "path": "force-app",
+            "default": true,
+            "package": "Logger",
+            "versionName": "0.1",
+            "versionNumber": "0.1.0.NEXT"
+        }
+    ],
+    "namespace": "hey",
+    "sfdcLoginUrl": "https://login.salesforce.com",
+    "sourceApiVersion": "44.0",
+    "packageAliases": {
+        "Logger": "0Ho0o000000CaUBCA0",
+        "Logger@0.1.0-1": "04t0o00000152xKAAQ"
+    }
+}

@@ -1,0 +1,50 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" controller="LogViewerCtrl" access="global">
+	<c:PlatformEventsListener channel="/event/hey__Log__e" onMessage="{!c.handleMessage}" onError="{! c.handleError }"/>
+
+	<!--<aura:attribute name="logs" type="List" access="private" default='[{"CreatedDate":"2018-03-10T17:57:58Z","CreatedById":"0057F0000024SadQAE","DML__c":null,"hey__Data__c":"[{\"type\":\"DEBUG\",\"message\":\"test debug message\"},{\"type\":\"INFO\",\"message\":\"test info message\"},{\"type\":\"ERROR\",\"message\":\"test error message\"},{\"type\":\"EXCEPTION\",\"message\":\"System.MathException: Divide by 0\\nAnonymousBlock: line 5, column 1\"}]","SOQL__c":null,"Title__c":null,"hey__Details__c":"{\"context\":{\"isEmailsTurnedOn\":true,\"trigger\":null,\"REST\":null,\"page\":null,\"isTest\":false,\"isScheduled\":false,\"isQueueable\":false,\"isFuture\":false,\"isBatch\":false,\"applicationReadWriteMode\":\"DEFAULT\"},\"endLimits\":{\"HeapSize\":\"2817 of 6000000 - 0.00%\",\"CpuTime\":\"15 of 10000 - 0.00%\",\"FutureCalls\":\"0 of 50 - 0.00%\",\"Callouts\":\"0 of 100 - 0.00%\",\"EmailInvocations\":\"0 of 10 - 0.00%\",\"DMLStatements\":\"0 of 150 - 0.00%\",\"DMLRows\":\"0 of 10000 - 0.00%\",\"QueryRows\":\"2 of 50000 - 0.00%\",\"Queries\":\"2 of 100 - 0.02%\"},\"organisation\":{\"attributes\":{\"type\":\"Organization\",\"url\":\"/services/data/v42.0/sobjects/Organization/00D7F000004eAnEUAU\"},\"Id\":\"00D7F000004eAnEUAU\",\"Name\":\"Vertic\",\"InstanceName\":\"AP5\",\"IsSandbox\":false,\"OrganizationType\":\"Developer Edition\"},\"user\":{\"attributes\":{\"type\":\"User\",\"url\":\"/services/data/v42.0/sobjects/User/0057F0000024SadQAE\"},\"Id\":\"0057F0000024SadQAE\",\"Name\":\"Dmitry Lisovsky\",\"Email\":\"lisovsky.dima@gmail.com\",\"UserType\":\"Standard\",\"LanguageLocaleKey\":\"en_US\",\"TimeZoneSidKey\":\"America/Los_Angeles\",\"LocaleSidKey\":\"en_US\",\"ProfileId\":\"00e7F000002M7hUQAS\",\"Profile\":{\"attributes\":{\"type\":\"Profile\",\"url\":\"/services/data/v42.0/sobjects/Profile/00e7F000002M7hUQAS\"},\"Id\":\"00e7F000002M7hUQAS\",\"Name\":\"System Administrator\"}},\"dateTime\":\"3/10/2018 9:57 AM\",\"startLimits\":{\"HeapSize\":\"1876 of 6000000 - 0.00%\",\"CpuTime\":\"4 of 10000 - 0.00%\",\"FutureCalls\":\"0 of 50 - 0.00%\",\"Callouts\":\"0 of 100 - 0.00%\",\"EmailInvocations\":\"0 of 10 - 0.00%\",\"DMLStatements\":\"0 of 150 - 0.00%\",\"DMLRows\":\"0 of 10000 - 0.00%\",\"QueryRows\":\"0 of 50000 - 0.00%\",\"Queries\":\"0 of 100 - 0.00%\"}}"}]'/>-->
+	<aura:attribute name="logs" type="List" access="private" default='[]'/>
+
+	<aura:attribute name="isBusy" type="Boolean" default="true" access="private"/>
+	<aura:attribute name="metadata" type="Map" default="{}" access="private"/>
+
+	<aura:handler name="init" value="{!this}" action="{!c.handleInit}" />
+
+	<c:Utils context="{!this}"/>
+
+	<lightning:card title="Logs" class="cardHeight">
+
+		<aura:set attribute="actions">
+
+			<aura:if isTrue="{! not(empty(v.logs)) }">
+				<lightning:button label="Clear"
+						variant="neutral"
+						onclick="{! c.handleClearClick }"
+				>
+				</lightning:button>
+			</aura:if>
+
+		</aura:set>
+
+		<div class="slds-p-around_card-wrapper-spacing slds-p-top--none">
+
+			<aura:if isTrue="{! v.isBusy }">
+				<lightning:spinner alternativeText="Loading..."/>
+			</aura:if>
+
+			<aura:if isTrue="{! not(empty(v.logs)) }">
+				<aura:iteration items="{! v.logs }" var="log">
+					<c:Log log="{#log}" rootMetadata="{! v.metadata }"/>
+				</aura:iteration>
+
+				<aura:set attribute="else">
+					<p class="slds-text-align_center">
+						No Logs
+					</p>
+				</aura:set>
+			</aura:if>
+		</div>
+
+	</lightning:card>
+
+
+</aura:component>

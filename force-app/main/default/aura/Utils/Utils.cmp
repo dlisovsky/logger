@@ -1,0 +1,5 @@
+<aura:component description="Utils">
+	<aura:attribute name="context" type="Object" required="true"/>
+
+	<aura:handler name="init" value="{!this}" action="{!c.handleInit}"/>
+</aura:component>
