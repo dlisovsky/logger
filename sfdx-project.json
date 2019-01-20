@@ -13,9 +13,6 @@
     "sourceApiVersion": "44.0",
     "packageAliases": {
         "Logger": "0Ho0o000000CaUBCA0",
-        "Logger@0.1.0-1": "04t0o00000152xKAAQ",
-        "Logger@0.1.0-3": "04t0o00000153xQAAQ",
-        "Logger@0.1.0-4": "04t0o00000153xVAAQ",
-        "Logger@0.1.0-5": "04t0o00000154UcAAI"
+        "Logger@0.1.0-6": "04t0o000001555rAAA"
     }
 }
