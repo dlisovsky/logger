@@ -1,3 +1,7 @@
 .THIS .count-by-type{
 	line-height: 28px;
 }
+
+.THIS .log-details textarea{
+	min-height: 500px;
+}

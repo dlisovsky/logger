@@ -12,7 +12,6 @@
 	<c:Utils context="{!this}"/>
 
 	<lightning:card title="Logs" class="cardHeight">
-
 		<aura:set attribute="actions">
 
 			<aura:if isTrue="{! not(empty(v.logs)) }">
@@ -25,7 +24,7 @@
 
 		</aura:set>
 
-		<div class="slds-p-around_card-wrapper-spacing slds-p-top--none">
+		<div class="slds-p-around_card-wrapper-spacing slds-p-top_none slds-m-around_medium">
 
 			<aura:if isTrue="{! v.isBusy }">
 				<lightning:spinner alternativeText="Loading..."/>
